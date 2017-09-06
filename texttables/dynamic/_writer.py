@@ -7,6 +7,7 @@ from __future__ import division, absolute_import, print_function, unicode_litera
 from six.moves import zip
 
 from texttables.fixed import writer as fixedwriter
+from texttables.utfwidth import utfwidth
 
 class writer(object):
     """Dynamic-table document writer, writing tables with computed column-sizes.
@@ -98,7 +99,7 @@ class writer(object):
 
         def checkwidths(row):
             for i in range(len(row)):
-                size = len(row[i])
+                size = utfwidth(row[i])
                 if size > widths[i]:
                     widths[i] = size
 

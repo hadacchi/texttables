@@ -6,6 +6,7 @@
 from __future__ import division, absolute_import, print_function, unicode_literals
 from six.moves import zip
 from texttables.dialect import Dialect
+from texttables.utfwidth import fullchars, utfwidth
 
 class writer(object):
 
@@ -92,7 +93,7 @@ class writer(object):
             contents.append('{content!s:{alignment}{width}.{width}s}'.format(
                 content=cell,
                 alignment=alignment,
-                width=width))
+                width=width-fullchars(cell)))
         row = ''
         if dialect.left_border:
             row = dialect.left_border
